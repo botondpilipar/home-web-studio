@@ -1,0 +1,21 @@
+
+spring:
+  config:
+    import: "optional:configtree:/run/secrets/"
+  application:
+    name: home-web-studio
+  datasource:
+    url: jdbc:postgresql://hws_database:5432/hws_db
+    username: ${pg_username}
+    password: ${pg_password}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 30000 # 30 seconds
+      minimum-idle: 1
+      maximum-pool-size: 10
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+

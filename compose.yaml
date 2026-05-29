@@ -1,0 +1,35 @@
+services:
+  hws_database:
+    image: 'postgres:17.10'
+    restart: always
+    environment:
+      - 'POSTGRES_DB=hws_db'
+      - 'POSTGRES_PASSWORD=${HWS_DEFAULT_PWD}'
+      - 'POSTGRES_USER=${HWS_DEFAULT_USER}'
+    ports:
+      - '5432:5432'
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8090:8090
+
+  hws_backend:
+    profiles:
+      - production
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    secrets:
+      - pg_username
+      - pg_password
+
+secrets:
+   pg_password:
+     environment: HWS_DEFAULT_PWD
+   pg_username:
+     environment: HWS_DEFAULT_USER
+
+volumes:
+  postgres-data:

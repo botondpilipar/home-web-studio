@@ -1,0 +1,25 @@
+spring:
+  config:
+    import: "optional:file:.env"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hws_db
+    username: ${HWS_DEFAULT_USER}
+    password: ${HWS_DEFAULT_PWD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+logging:
+  level:
+    com:
+      zaxxer:
+        hikari: DEBUG
+
+org:
+  springframework:
+    boot:
+      autoconfigure:
+        jdbc: DEBUG
