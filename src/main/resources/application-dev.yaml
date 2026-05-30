@@ -17,6 +17,8 @@ logging:
     com:
       zaxxer:
         hikari: DEBUG
+      hws:
+        home-web-studio: DEBUG
 
 org:
   springframework:

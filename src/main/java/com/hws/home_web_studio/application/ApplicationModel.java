@@ -33,7 +33,7 @@ public class ApplicationModel {
     @Column(columnDefinition = "BYTEA", nullable = false)
     private byte[] icon;
 
-    @ManyToMany(mappedBy = "installed_applications", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "installed", fetch = FetchType.LAZY)
     @Getter @Setter
     private Set<UserModel> users;
 

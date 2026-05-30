@@ -19,6 +19,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "users")
@@ -34,22 +35,25 @@ public class UserModel {
     private String fullName;
 
     @Column(nullable = false)
-    @Getter
+    @Getter @Setter
     private String userName;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.ORDINAL)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @Getter @Setter
+    private UserRoles role;
 
     @Column(columnDefinition = "BYTEA", nullable = true)
+    @Getter @Setter
     private byte[] profilePicture;
 
     @Column(columnDefinition = "BYTEA", nullable = true)
+    @Getter @Setter
     private byte[] backgroundImage;
 
     @Column(nullable = false, length = 64)
+    @Getter @Setter
     private String passwordHash;
-
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
