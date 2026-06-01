@@ -11,4 +11,6 @@ USER spring:spring
 
 COPY ${JAR_FILE} hws-backend.jar
 
+EXPOSE 8080
+
 ENTRYPOINT ["java","-jar","/hws-backend.jar"]

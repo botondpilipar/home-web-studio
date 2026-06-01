@@ -4,16 +4,19 @@ services:
     restart: always
     environment:
       - 'POSTGRES_DB=hws_db'
-      - 'POSTGRES_PASSWORD=${HWS_DEFAULT_PWD}'
-      - 'POSTGRES_USER=${HWS_DEFAULT_USER}'
+      - 'POSTGRES_PASSWORD_FILE=/run/secrets/pg_password'
+      - 'POSTGRES_USER_FILE=/run/secrets/pg_username'
     ports:
       - '5432:5432'
+    secrets:
+      - pg_username
+      - pg_password
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8090:8090
+      - 8090:8080
 
   hws_backend:
     profiles:
@@ -24,6 +27,8 @@ services:
     secrets:
       - pg_username
       - pg_password
+    ports:
+      - 8080:8080
 
 secrets:
    pg_password:

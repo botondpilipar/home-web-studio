@@ -6,8 +6,8 @@ spring:
     name: home-web-studio
   datasource:
     url: jdbc:postgresql://hws_database:5432/hws_db
-    username: ${pg_username}
-    password: ${pg_password}
+    username: ${pg_username:parent}
+    password: ${pg_password:hwsParent}
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-timeout: 30000 # 30 seconds
@@ -18,4 +18,3 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-

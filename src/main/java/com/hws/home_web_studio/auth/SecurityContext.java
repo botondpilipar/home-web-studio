@@ -28,11 +28,12 @@ public class SecurityContext {
                     "/.well-known/**",
                     "/favicon.ico",
                     "/error",
-                    "/error/**").permitAll()
+                    "/error/**",
+                    "/login.html").permitAll()
                 .requestMatchers("/**/*com.chrome.devtools*").permitAll()
                 .anyRequest().authenticated())
-            .httpBasic(Customizer.withDefaults())
-            .formLogin(Customizer.withDefaults());
+            .formLogin(Customizer.withDefaults())
+            .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }

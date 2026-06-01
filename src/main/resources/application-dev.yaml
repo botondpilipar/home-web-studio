@@ -1,16 +1,19 @@
 spring:
-  config:
-    import: "optional:file:.env"
   datasource:
     url: jdbc:postgresql://localhost:5432/hws_db
-    username: ${HWS_DEFAULT_USER}
-    password: ${HWS_DEFAULT_PWD}
+    username: ${HWS_DEFAULT_USER:parent}
+    password: ${HWS_DEFAULT_PWD:hwsParent}
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
     show-sql: true
+  thymeleaf:
+    cache: false
+  docker:
+    compose:
+      enabled: false
 
 logging:
   level:
@@ -19,6 +22,11 @@ logging:
         hikari: DEBUG
       hws:
         home-web-studio: DEBUG
+    org:
+      springframework:
+        security: DEBUG
+        security.web: TRACE
+
 
 org:
   springframework:
